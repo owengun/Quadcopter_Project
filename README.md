@@ -9,6 +9,7 @@ The model was simplified by assuming near-hovering motion.
   - roll, pitch rate was not saturated - to be adjusted later
   - yaw was not assumed zero
   - Thrust was assumed to be near mg (gravitational force)
+  - No any disturbances was assumed
 
 
 Only 6 PID controllers (x, y, z, roll, pitch, yaw) were implemented
@@ -18,7 +19,8 @@ Only 6 PID controllers (x, y, z, roll, pitch, yaw) were implemented
 2. Implement GPS and IMU sensors (with random noise)
 3. Implement Filter (e.g. Kalman Filter or LPF)
 4. Make new plant model based on state-space form (Implemnet Kalman Filter as well)
-5. Combine with various algorithms such as path-planning or obstacle avoidance 
+5. Combine with various algorithms such as path-planning or obstacle avoidance
+6. Assume existance of disturbance
 
 
 # Contact:
