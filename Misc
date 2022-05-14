@@ -1,0 +1,54 @@
+#!/bin/bash
+
+
+cd ROS_exp_log
+mkdir "$(date +"%Y-%m-%d-%H-%M")"
+cd "$(date +"%Y-%m-%d-%H-%M")"
+
+
+echo "initiating rosbag record..."
+rosbag record /ego_pose -O ego_pose_record __name:=rec1& 
+rosbag record /ego_yaw -O ego_yaw_record __name:=rec2 & 
+rosbag record /path -O desired_path_record __name:=rec3&
+rosbag record /steering_angle -O steering_angle_record __name:=rec4&
+rosbag record /imu -O imu_record __name:=rec5&
+rosbag record /ego_vel -O vel_record __name:=rec6&
+#rosbag record /zed2i/zed_node/obj_det/objects -O detection_record __name:=rec7&
+rosbag record /darknet_ros/bounding_boxes -O detection_record __name:=rec7&
+ 
+
+#sleep 15s
+
+while [ true ] ; do
+read -t 3 -n 1
+if [ $? = 0 ] ; then
+
+echo "killing all rosbag nodes..."
+rosnode list | grep rec | xargs rosnode kill
+echo "killed all rosbag nodes!"
+
+
+sleep 3s
+echo "converting to txt..."
+rostopic echo -b desired_path_record.bag -p /path > path.txt
+rostopic echo -b ego_pose_record.bag -p /ego_pose > pose.txt
+rostopic echo -b ego_yaw_record.bag -p /ego_yaw > yaw.txt
+rostopic echo -b steering_angle_record.bag -p /steering_angle > steering.txt
+rostopic echo -b imu_record.bag -p /imu > imu.txt
+rostopic echo -b vel_record.bag -p /ego_vel > vel.txt
+#rostopic echo -b detection_record.bag -p /zed2i/zed_node/obj_det/objects > det.txt
+rostopic echo -b detection_record.bag -p /darnet_ros/bounding_boxes > det.txt
+
+echo "all txt files generated!"
+
+exit ;
+
+else
+echo "Press any key to finish the recording"
+
+fi
+done
+
+
+
+
