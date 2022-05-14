@@ -18,6 +18,6 @@ Only 6 PID controllers (x, y, z, roll, pitch, yaw) were implemented
 
 
 # Contact:
-owengun@dgist.ac.kr
+owengun@dgist.ac.kr /n
 Daegu Gyeongbuk Institute of Science and Technology
 Republic of Korea
