@@ -15,3 +15,9 @@ Only 6 PID controllers (x, y, z, roll, pitch, yaw) were implemented
 3. Implement Filter (e.g. Kalman Filter or LPF)
 4. Make new plant model based on state-space form (Implemnet Kalman Filter as well)
 5. Combine with various algorithms such as path-planning or obstacle avoidance 
+
+
+# Contact:
+owengun@dgist.ac.kr
+Daegu Gyeongbuk Institute of Science and Technology
+Republic of Korea
